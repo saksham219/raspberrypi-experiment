@@ -1,0 +1,28 @@
+<html>
+ <head>
+ </head>
+ <body>
+   <script>
+	   const handleToggle = () => {fetch('/gpiu', {
+			      method: 'post'}).then((response) => { return response.json()}).then(response => {
+						 console.log(response)
+						 document.getElementById("gpiu-status").textContent = response["status"]})
+					 }
+
+
+	   const getGpiu = () => {	fetch("/gpiu", {method:'get'})
+  .then(function (response) {
+		     console.log("response received")
+		     return response.json()}).catch(function (error) {
+    console.log("Error: " + error);
+				}).then((response) => {
+console.log(response)
+						document.getElementById("gpiu-status").textContent = response["status"]});
+		   }
+	getGpiu()
+   </script>
+   <h1>Hallo Leute!</h1>
+   <button name="foo" onClick="handleToggle()">Toggle GPIO 4</button>
+   <h3>RPI GPIO Pin 4 status</h3> <h3 id="gpiu-status"></h3>
+ </body>
+ </html>
