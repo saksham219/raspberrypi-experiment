@@ -1,0 +1,23 @@
+{
+  "name": "raspberrypi-experiment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saksham219/raspberrypi-experiment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saksham219/raspberrypi-experiment/issues"
+  },
+  "homepage": "https://github.com/saksham219/raspberrypi-experiment#readme",
+  "dependencies": {
+    "onoff": "^6.0.3"
+  }
+}
