@@ -1,28 +1,64 @@
 <html>
- <head>
- </head>
- <body>
-   <script>
-	   const handleToggle = () => {fetch('/gpiu', {
-			      method: 'post'}).then((response) => { return response.json()}).then(response => {
-						 console.log(response)
-						 document.getElementById("gpiu-status").textContent = response["status"]})
-					 }
+
+<head>
+	<!-- All browser side javascript code goes under the script tags. 
+		this code will be run as soon as the page is loaded in the browser-->
+	<script>
+		//Define a function to change the toggle state of a button. The function sends a POST request to the /gpiu endpoint
+		// This function is called when button is clicked
+		const handleToggle = () => {
+			fetch("/gpiu", {
+				method: "post",
+			})
+				.then((response) => {
+					return response.json();
+				})
+				.then((response) => {
+					console.log(response);
+					// this finds the HTML element with id "gpiu-status" and sets the content of that
+					// HTML element
+					document.getElementById("gpiu-status").textContent = response["status"];
+				});
+		};
 
 
-	   const getGpiu = () => {	fetch("/gpiu", {method:'get'})
-  .then(function (response) {
-		     console.log("response received")
-		     return response.json()}).catch(function (error) {
-    console.log("Error: " + error);
-				}).then((response) => {
-console.log(response)
-						document.getElementById("gpiu-status").textContent = response["status"]});
-		   }
-	getGpiu()
-   </script>
-   <h1>Hallo Leute!</h1>
-   <button name="foo" onClick="handleToggle()">Toggle GPIO 4</button>
-   <h3>RPI GPIO Pin 4 status</h3> <h3 id="gpiu-status"></h3>
- </body>
- </html>
+		//Define a function to get the state. The function sends a GET request to the /gpiu endpoint
+		const getGpiu = () => {
+			fetch("/gpiu", { method: "get" })
+				.then(function (response) {
+					console.log("response received");
+					return response.json();
+				})
+				.catch(function (error) {
+					console.log("Error: " + error);
+				})
+				.then((response) => {
+					// console log will log to the browser console
+					console.log(response);
+					// this finds the HTML element with id "gpiu-status" and sets the content of that
+					document.getElementById("gpiu-status").textContent = response["status"];
+				});
+		};
+
+		//Run the getGpiu() function to get the current state of the button on page startup
+		// and set the state in the HTML div
+		getGpiu();
+	</script>
+</head>
+
+<body>
+	<!-- Define a heading-->
+	<h1>Hallo Leute!</h1>
+	<!-- Define a button. the onclick attribute takes a function from the script tags and runs it on 
+	button click-->
+	<button name="foo" onClick="handleToggle()">Toggle GPIO 4</button>
+
+	<!-- Define another heading-->
+	<h3>RPI GPIO Pin 4 status</h3>
+
+	<!-- Define another heading for the button status: 0 or 1. This is empty initially and filled 
+	by the javascript code in script-->
+	<h3 id="gpiu-status"></h3>
+</body>
+
+</html>
